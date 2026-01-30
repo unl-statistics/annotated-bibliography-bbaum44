@@ -9,18 +9,36 @@ citations-hover: false
 
 # Annual Review Article
 
-@annualrevarticle
+[@inacioStatisticalEvaluationMedical2021]
 
 
 # References
 
-@ref1
+[@metzBasicPrinciplesROC1978]
 
 - Summary
+In this article, Metz presents the principles of ROC, or Reciever Operating Characteristic analysis. He explains how ROC analysis can be used as a practical and foundational part of evaluting the diagnostic performance of medical tests.He demonstrates how plotting sensitivity versus one specificity for different thresholds helps to identify the optimal cutoff for differenciating diseased and healthy individuals.The work is both historical and instructional, and is the essential for future research.
 
 - Reliability and relationship to the topic
 
-- Missing pieces
-    - thing 1
+Metz was a leading figure in medical imaging research. His explanations are considered foundational and widely cited in many peer-reviewed pieces of literature.
 
-    - thing 2
+The article explains why ROC curves are useful for distinguishing true positives vs. false positives, which is one of the fundemental principles of the article
+
+- Missing pieces
+    - The article is quite old, so it does not include adaptations to more modern methods or means of software implementations
+    - Focused mainly on nuclear medicine, so may need to acquire more supplemental information to apply to general medical tests
+
+[@pepeStatisticalEvaluationMedical2003]
+
+- Summary
+Pepe's book contains a comprehensive framework for the statistical evaluation of medical tests. The book covers both sensitivity, specificity, ROC curevs, and other models used for prediction. The book also discusses both the assumptions, and the considerations behind various models and the implications for test evaluation.She also explains how to implement these models into a clinical setting.
+
+- Reliability and relationship to the topic
+Margaret Sullivan Pepe is a recognized expert and professor in biostatistics and epidemiology. Her work is widely cited in medical statistics and predictive modeling
+
+Pepe expands into classification, prediction, study design, and validation of medical tests, which allows for a more comprehensive view of evaluating medical tests using stats.
+
+- Missing pieces
+    - also relatively old (2003), so does not include recent computational approaches
+    - need extreme familiarity with regression models
