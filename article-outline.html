@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>article-outline</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="article-outline_files/libs/clipboard/clipboard.min.js"></script>
+<script src="article-outline_files/libs/quarto-html/quarto.js"></script>
+<script src="article-outline_files/libs/quarto-html/popper.min.js"></script>
+<script src="article-outline_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="article-outline_files/libs/quarto-html/anchor.min.js"></script>
+<link href="article-outline_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="article-outline_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="article-outline_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="article-outline_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="article-outline_files/libs/bootstrap/bootstrap-8a79a254b8e706d3c925cde0a310d4f0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">article-outline</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>1. Introduction</h1>
+<p>This section introduces ROC analysis as a tool for evaluating diagnostic tests and explains why covariates need to be considered when measuring test accuracy. It outlines the scope of the review and provides background on covariate-specific ROC curves in existing research. The goal is to help readers understand how adjusting for factors like age or gender can change the interpretation of a test’s performance.</p>
+</section>
+<section id="illustrative-example" class="level1">
+<h1>2. Illustrative Example</h1>
+<p>Here we show how HOMA-IR levels, which can be influenced by age and gender, can help detect cardio-metabolic risk in a cross-sectional Spanish adult population. Metabolic syndrome is used as the outcome measure to illustrate the practical application of ROC analysis. This example helps ground the later methods in a concrete scenario.</p>
+</section>
+<section id="popular-measures-of-accuracy" class="level1">
+<h1>3. Popular Measures of Accuracy</h1>
+<section id="binary-tests" class="level2">
+<h2 class="anchored" data-anchor-id="binary-tests">3.1. Binary Tests</h2>
+<p>Binary tests produce only two outcomes: positive or negative. Accuracy is measured using sensitivity (TPF) and specificity (TNF), while misclassifications show up as false positives or false negatives. Predictive values (PPV and NPV) give a sense of how useful the test is in practice, though they depend on disease prevalence.</p>
+</section>
+<section id="continuous-tests" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-tests">3.2. Continuous Tests</h2>
+<p>Continuous tests, like HOMA-IR, require setting a threshold to decide what counts as positive or negative. ROC curves summarize the tradeoff between sensitivity and specificity across all thresholds. Measures like the AUC and Youden Index provide a single-number summary of accuracy.</p>
+</section>
+<section id="roc-curve-estimation-methods" class="level2">
+<h2 class="anchored" data-anchor-id="roc-curve-estimation-methods">3.3. ROC Curve Estimation Methods</h2>
+<p>ROC curves can be estimated using parametric, semiparametric, or nonparametric approaches. Methods include empirical estimates, kernel smoothing, and Bayesian modeling. These techniques allow calculation of summary measures like AUC and optimal thresholds, helping compare different tests or models.</p>
+</section>
+<section id="illustration" class="level2">
+<h2 class="anchored" data-anchor-id="illustration">3.4. Illustration</h2>
+<p>The methods are applied to HOMA-IR data, stratified by gender, to show how ROC curves behave in practice. The AUCs (~0.70) suggest mild accuracy, while optimal thresholds based on the Youden Index indicate practical cutoffs. Results also show that performance may vary depending on covariates like age or gender.</p>
+</section>
+</section>
+<section id="receiver-operating-characteristic-curves-and-covariates" class="level1">
+<h1>4. Receiver Operating Characteristic Curves and Covariates</h1>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">4.1. Motivation</h2>
+<p>Test accuracy can change depending on covariates such as age or gender. For example, log(HOMA-IR) distributions show different overlaps between diseased and nondiseased groups across ages. While covariates can shift test distributions, they do not always affect how well the test discriminates between disease and non-disease, making covariate-specific thresholds useful.</p>
+</section>
+<section id="notation-and-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="notation-and-definitions">4.2. Notation and Definitions</h2>
+<p>Covariate-specific ROC curves are defined for particular covariate values x. The AUC and Youden Index can also be calculated for each covariate level, helping identify where tests work best or worst. Different ROC curves may exist for different subpopulations.</p>
+</section>
+<section id="covariate-specific-roc-curve-estimation" class="level2">
+<h2 class="anchored" data-anchor-id="covariate-specific-roc-curve-estimation">4.3. Covariate-Specific ROC Curve Estimation</h2>
+<section id="induced-methodology" class="level3">
+<h3 class="anchored" data-anchor-id="induced-methodology">4.3.1. Induced Methodology</h3>
+<p>Induced methods model the distribution of test outcomes separately for diseased and nondiseased groups. Approaches include regression-based models, kernel smoothing, and Bayesian DP mixtures. These methods derive the ROC curve indirectly from these conditional distributions.</p>
+</section>
+<section id="direct-methodology" class="level3">
+<h3 class="anchored" data-anchor-id="direct-methodology">4.3.2. Direct Methodology</h3>
+<p>Direct methods model the ROC curve itself as a function of covariates. Regression approaches treat the ROC curve as the expected value of a binary variable indicating placement above a threshold. Parametric, semiparametric, or additive models can then estimate covariate effects directly.</p>
+</section>
+</section>
+<section id="covariate-adjusted-roc-curve" class="level2">
+<h2 class="anchored" data-anchor-id="covariate-adjusted-roc-curve">4.4. Covariate-Adjusted ROC Curve</h2>
+<p>The covariate-adjusted ROC (AROC) curve provides a summary across covariate values by averaging covariate-specific curves, weighted by the diseased population’s covariate distribution. AROCs are useful when accuracy is constant but distributions shift, while covariate-specific ROC curves are better when accuracy changes with covariates.</p>
+</section>
+<section id="illustration-1" class="level2">
+<h2 class="anchored" data-anchor-id="illustration-1">4.5. Illustration</h2>
+<p>Examining HOMA-IR ROC curves shows that accuracy is mostly stable for men but decreases with age in women. Covariate-specific AUCs and Youden Indexes reveal thresholds that vary with age and gender, demonstrating how covariate-adjusted and covariate-specific ROC analyses work in practice.</p>
+</section>
+</section>
+<section id="receiver-operating-characteristic-curves-and-time-and-covariates" class="level1">
+<h1>5. Receiver Operating Characteristic Curves and Time (and Covariates)</h1>
+<section id="motivation-1" class="level2">
+<h2 class="anchored" data-anchor-id="motivation-1">5.1. Motivation</h2>
+<p>In prognostic settings, test outcomes are measured at baseline, but disease onset occurs later. ROC curves, TPF, and TNF then become time-dependent, allowing accuracy to be evaluated at different time points.</p>
+</section>
+<section id="time-dependent-tpf-tnf-and-roc" class="level2">
+<h2 class="anchored" data-anchor-id="time-dependent-tpf-tnf-and-roc">5.2. Time-Dependent TPF, TNF, and ROC</h2>
+<p>Time-dependent TPF and TNF can be defined in multiple ways: cumulative/dynamic, incident/dynamic, and incident/static. The cumulative/dynamic definition considers subjects diseased if they develop the condition by time t, and nondiseased if they are disease-free at t. ROC curves plot FPF versus TPF across thresholds over time.</p>
+</section>
+<section id="time-dependent-auc" class="level2">
+<h2 class="anchored" data-anchor-id="time-dependent-auc">5.3. Time-Dependent AUC</h2>
+<p>The time-dependent AUC summarizes accuracy at a specific time, showing the probability that a randomly chosen diseased subject has a higher test result than a nondiseased one. It extends the usual AUC to account for changing subject classification over time.</p>
+</section>
+<section id="estimation-challenges-and-methods" class="level2">
+<h2 class="anchored" data-anchor-id="estimation-challenges-and-methods">5.4. Estimation Challenges and Methods</h2>
+<p>Right-censoring complicates estimation because some subjects may drop out of the study before time t. Methods to address this include Kaplan–Meier–based estimators, nearest-neighbor techniques, Cox models, inverse probability weighting, bivariate kernel density estimation, and Bayesian semiparametric approaches.</p>
+</section>
+<section id="covariate-specific-time-dependent-roc" class="level2">
+<h2 class="anchored" data-anchor-id="covariate-specific-time-dependent-roc">5.5. Covariate-Specific Time-Dependent ROC</h2>
+<p>Covariates can be included in time-dependent ROC analyses, yielding TPF(c, t | x) and TNF(c, t | x) for each covariate value x. This allows estimation of covariate-specific time-dependent ROC curves and AUCs, providing a more precise picture of accuracy over time for different populations.</p>
+</section>
+</section>
+<section id="software" class="level1">
+<h1>6. Software</h1>
+<p>This section provides a brief overview of software tools for ROC analysis, mainly in R. The <code>pROC</code> package offers visualization, smoothing, and ROC comparison but can’t handle covariates directly. Packages like <code>ROCRegression</code> and <code>npROCRegression</code> allow covariate-specific ROC estimation using frequentist methods, while <code>ROCnReg</code> supports Bayesian approaches. For time-dependent ROC curves, <code>survivalROC</code>, <code>timeROC</code>, and <code>CondTimeROC</code> implement various estimation strategies. Other packages, like <code>OptimalCutpoints</code>, help determine optimal thresholds for clinical decision-making.</p>
+</section>
+<section id="discussion-and-further-topics" class="level1">
+<h1>7. Discussion and Further Topics</h1>
+<p>The article summarizes key methods for evaluating medical tests with ROC curves, covariate adjustments, and time-dependent analyses. Topics not covered in depth include predictive ROC curves (pROC), multi-class ROC surfaces for more than two outcomes, situations without a gold-standard test, and combining multiple biomarkers. These areas provide opportunities for further research and practical application in clinical studies.</p>
+</section>
+<section id="gaps-or-missing-areas" class="level1">
+<h1>Gaps or Missing Areas</h1>
+<p>No major structural gaps are evident.The outline captures the main topics of each section but omits some details, such as key definitions, formulas, and methodological distinctions (e.g., induced vs direct ROC methods). It also lacks practical examples, explanations of software implementations, and connections between covariates, time-dependence, and accuracy measures. Overall, the outline summarizes the content but does not fully convey the depth and nuances of the paper, but there are not any makor gaps in this outline</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

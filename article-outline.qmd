@@ -1,0 +1,74 @@
+---
+title: "article-outline"
+format: html
+---
+
+# 1. Introduction
+This section introduces ROC analysis as a tool for evaluating diagnostic tests and explains why covariates need to be considered when measuring test accuracy. It outlines the scope of the review and provides background on covariate-specific ROC curves in existing research. The goal is to help readers understand how adjusting for factors like age or gender can change the interpretation of a test’s performance.  
+
+# 2. Illustrative Example
+Here we show how HOMA-IR levels, which can be influenced by age and gender, can help detect cardio-metabolic risk in a cross-sectional Spanish adult population. Metabolic syndrome is used as the outcome measure to illustrate the practical application of ROC analysis. This example helps ground the later methods in a concrete scenario.  
+
+# 3. Popular Measures of Accuracy
+
+## 3.1. Binary Tests
+Binary tests produce only two outcomes: positive or negative. Accuracy is measured using sensitivity (TPF) and specificity (TNF), while misclassifications show up as false positives or false negatives. Predictive values (PPV and NPV) give a sense of how useful the test is in practice, though they depend on disease prevalence.  
+
+## 3.2. Continuous Tests
+Continuous tests, like HOMA-IR, require setting a threshold to decide what counts as positive or negative. ROC curves summarize the tradeoff between sensitivity and specificity across all thresholds. Measures like the AUC and Youden Index provide a single-number summary of accuracy.  
+
+## 3.3. ROC Curve Estimation Methods
+ROC curves can be estimated using parametric, semiparametric, or nonparametric approaches. Methods include empirical estimates, kernel smoothing, and Bayesian modeling. These techniques allow calculation of summary measures like AUC and optimal thresholds, helping compare different tests or models.  
+
+## 3.4. Illustration
+The methods are applied to HOMA-IR data, stratified by gender, to show how ROC curves behave in practice. The AUCs (~0.70) suggest mild accuracy, while optimal thresholds based on the Youden Index indicate practical cutoffs. Results also show that performance may vary depending on covariates like age or gender.  
+
+# 4. Receiver Operating Characteristic Curves and Covariates
+
+## 4.1. Motivation
+Test accuracy can change depending on covariates such as age or gender. For example, log(HOMA-IR) distributions show different overlaps between diseased and nondiseased groups across ages. While covariates can shift test distributions, they do not always affect how well the test discriminates between disease and non-disease, making covariate-specific thresholds useful.  
+
+## 4.2. Notation and Definitions
+Covariate-specific ROC curves are defined for particular covariate values x. The AUC and Youden Index can also be calculated for each covariate level, helping identify where tests work best or worst. Different ROC curves may exist for different subpopulations.  
+
+## 4.3. Covariate-Specific ROC Curve Estimation
+
+### 4.3.1. Induced Methodology
+Induced methods model the distribution of test outcomes separately for diseased and nondiseased groups. Approaches include regression-based models, kernel smoothing, and Bayesian DP mixtures. These methods derive the ROC curve indirectly from these conditional distributions.  
+
+### 4.3.2. Direct Methodology
+Direct methods model the ROC curve itself as a function of covariates. Regression approaches treat the ROC curve as the expected value of a binary variable indicating placement above a threshold. Parametric, semiparametric, or additive models can then estimate covariate effects directly.  
+
+## 4.4. Covariate-Adjusted ROC Curve
+The covariate-adjusted ROC (AROC) curve provides a summary across covariate values by averaging covariate-specific curves, weighted by the diseased population’s covariate distribution. AROCs are useful when accuracy is constant but distributions shift, while covariate-specific ROC curves are better when accuracy changes with covariates.  
+
+## 4.5. Illustration
+Examining HOMA-IR ROC curves shows that accuracy is mostly stable for men but decreases with age in women. Covariate-specific AUCs and Youden Indexes reveal thresholds that vary with age and gender, demonstrating how covariate-adjusted and covariate-specific ROC analyses work in practice.  
+
+# 5. Receiver Operating Characteristic Curves and Time (and Covariates)
+
+## 5.1. Motivation
+In prognostic settings, test outcomes are measured at baseline, but disease onset occurs later. ROC curves, TPF, and TNF then become time-dependent, allowing accuracy to be evaluated at different time points.  
+
+## 5.2. Time-Dependent TPF, TNF, and ROC
+Time-dependent TPF and TNF can be defined in multiple ways: cumulative/dynamic, incident/dynamic, and incident/static. The cumulative/dynamic definition considers subjects diseased if they develop the condition by time t, and nondiseased if they are disease-free at t. ROC curves plot FPF versus TPF across thresholds over time.  
+
+## 5.3. Time-Dependent AUC
+The time-dependent AUC summarizes accuracy at a specific time, showing the probability that a randomly chosen diseased subject has a higher test result than a nondiseased one. It extends the usual AUC to account for changing subject classification over time.  
+
+## 5.4. Estimation Challenges and Methods
+Right-censoring complicates estimation because some subjects may drop out of the study before time t. Methods to address this include Kaplan–Meier–based estimators, nearest-neighbor techniques, Cox models, inverse probability weighting, bivariate kernel density estimation, and Bayesian semiparametric approaches.  
+
+## 5.5. Covariate-Specific Time-Dependent ROC
+Covariates can be included in time-dependent ROC analyses, yielding TPF(c, t | x) and TNF(c, t | x) for each covariate value x. This allows estimation of covariate-specific time-dependent ROC curves and AUCs, providing a more precise picture of accuracy over time for different populations.  
+
+# 6. Software
+This section provides a brief overview of software tools for ROC analysis, mainly in R. The `pROC` package offers visualization, smoothing, and ROC comparison but can’t handle covariates directly. Packages like `ROCRegression` and `npROCRegression` allow covariate-specific ROC estimation using frequentist methods, while `ROCnReg` supports Bayesian approaches. For time-dependent ROC curves, `survivalROC`, `timeROC`, and `CondTimeROC` implement various estimation strategies. Other packages, like `OptimalCutpoints`, help determine optimal thresholds for clinical decision-making.  
+
+# 7. Discussion and Further Topics
+The article summarizes key methods for evaluating medical tests with ROC curves, covariate adjustments, and time-dependent analyses. Topics not covered in depth include predictive ROC curves (pROC), multi-class ROC surfaces for more than two outcomes, situations without a gold-standard test, and combining multiple biomarkers. These areas provide opportunities for further research and practical application in clinical studies. 
+
+# Gaps or Missing Areas
+No major structural gaps are evident.The outline captures the main topics of each section but omits some details, such as key definitions, formulas, and methodological distinctions (e.g., induced vs direct ROC methods). It also lacks practical examples, explanations of software implementations, and connections between covariates, time-dependence, and accuracy measures. Overall, the outline summarizes the content but does not fully convey the depth and nuances of the paper, but there are not any makor gaps in this outline
+
+
