@@ -1,0 +1,32 @@
+
+---
+title: "Rhetorical Analysis"
+bibliography: references.bib
+csl: chicago-syllabus.csl
+link-citations: false
+citations-hover: false
+---
+
+# Intro to use of Rhetoric 
+
+The article "Statistical Evaluation of Medical Tests" displays a variety of rhetorical strategies. Implementing this rhetoric helps to bridge the gap between complex methodology and clinical application (@inacioStatisticalEvaluationMedical2021) Writing for the *Annual Review of Statistics and Its Application*, the authors construct their argument through balancing mathmatical rigor and practical accessibility. The combination of these strategies makes the article comprhendable to both statisticians and medical researchers. 
+
+## Rhetorical Structure 
+
+The authors establish credibility through their organizational framework, and move systematically from foundational concepts to advanced applications. They begin with binary tests before addressing continuous measures which demonstrates an increasing complexity. This ensures sensitivity—readers encounter familiar diagnostic concepts (positive/negative) before presenting the complex threshold-based classifications [@inacioStatisticalEvaluationMedical2021, pp.44-45). This approach reflects awareness of their dual audience: statisticians seeking methodological depth and medical practitioners requiring practical guidance.
+
+The integration of the HOMA-IR dataset as an example also shows effective applied rhetoric. Rather than presenting abstract theory, the authors relate each statistical concept in the clinical  question of predicting cardio-metabolic risk [-@inacioStatisticalEvaluationMedical2021, pp. 43]. This method helps to communicate an in-depth methods review as an accessible case study. The decision to reveal findings incrementally, then by gender, and finally incorporating age-effects mirrors the investigative process researchers follow, making the methodology feel intuitive rather than imposed.
+
+## Visual and Mathematical Communication
+
+The authors use visual arguments to effectively make complex claims accessible. Figure 2 uses distributions to show how overlap determines diagnostic accuracy, making the relationship more apparent without needing a lengthy explanation. Figure 3 takes a different approach by showing four estimation methods producing similar results, which makes the argument for a certain increased applicability without stating it directly [-@inacioStatisticalEvaluationMedical2021, pp. 52]. These visual techniques work well for showing patterns, but they convince readers that methods work without explaining why they should be trusted over alternatives. In contrast, the dense mathematical equations (like Equations 3, 11, and 17) cancreate barriers for non-specialist readers who must either trust the authors or reject the claims entirely. 
+
+# Informative as Persuasive
+
+The article's most distinctive rhetorical technique is using assertion through authoritative voice. Most of the claims highlighted in this paper were stated as facts, and did not contain language meant to convince the reader. Claims like "ROC curves measure the amount of separation between distributions" are stated as facts rather than defended as positions [-@inacioStatisticalEvaluationMedical2021, pp. 46]. The lack of defensive argumentation implies the claims need no defense, which actually strengthens them. The effectiveness of this strategy would depend on what the prior notions were surrounding the topic and the overall purpose of this paper: was it to convince or to persuade?
+
+## Effectiveness Assessment
+
+The article's rhetorical techniques are effective in serving readers already familiar with ROC curves. The ordering of the information builds understanding, visual arguments demonstrate patterns, and authoritative assertion builds validity. The lack of comparative arguments (why ROC curves over other approaches?) and defensive warrants (what makes these assumptions valid?) limits persuasive. Overall, the article succeeded more through its rhetoric, rather than its argumentative claims.
+
+
